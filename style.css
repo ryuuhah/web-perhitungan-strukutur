@@ -1,0 +1,111 @@
+/* Warna Dasar (Inspirasi Modern/Mewah) */
+:root {
+    --primary-color: #4A90E2; /* Biru Cerah */
+    --primary-dark: #1F3A81; /* Biru Tua/Navy */
+    --secondary-color: #F9A825; /* Kuning Emas */
+    --text-dark: #333333;
+    --text-light: #f5f5f5;
+    --bg-light-gray: #f0f4f8;
+    --bg-dark-blue: #0A192F;
+}
+
+/* Body dan Layout Umum */
+body {
+    background-color: var(--bg-light-gray);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: var(--text-dark);
+}
+
+/* Navbar */
+.navbar {
+    border-bottom: 5px solid var(--primary-color);
+}
+.navbar-brand {
+    font-weight: 700;
+}
+.navbar-text {
+    font-size: 0.9rem;
+    color: #b0c2d6 !important;
+}
+
+/* Kartu Input & Hasil */
+.card {
+    border: none;
+    border-radius: 12px;
+    transition: transform 0.3s ease-in-out;
+}
+.input-card:hover, .result-card:hover {
+    transform: translateY(-3px);
+}
+
+/* Header Kartu */
+.card-header {
+    border-top-left-radius: 12px !important;
+    border-top-right-radius: 12px !important;
+    padding: 1rem 1.5rem;
+    font-size: 1.1rem;
+    letter-spacing: 0.5px;
+}
+.bg-primary-dark {
+    background-color: var(--primary-dark) !important;
+}
+.bg-dark-blue {
+    background-color: var(--bg-dark-blue) !important;
+}
+
+/* Tombol */
+.btn-primary-dark {
+    background-color: var(--primary-dark);
+    border-color: var(--primary-dark);
+    transition: background-color 0.3s;
+}
+.btn-primary-dark:hover {
+    background-color: #0d295b;
+    border-color: #0d295b;
+}
+
+/* Fieldset */
+fieldset {
+    border-left: 5px solid var(--primary-color) !important;
+    padding-left: 15px !important;
+}
+legend {
+    color: var(--primary-dark) !important;
+    font-weight: 600;
+}
+
+/* Area Hasil (Hasil yang dihitung) */
+.result-box {
+    border-left: 5px solid var(--secondary-color) !important;
+    background-color: #ffffff;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+.result-box h5 {
+    color: var(--primary-dark);
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+.result-data {
+    font-weight: 600;
+    color: #000;
+}
+
+/* Visualisasi */
+.chart-container { 
+    height: 280px; 
+    width: 100%; 
+    margin-top: 20px; 
+    padding: 10px;
+    border: 1px dashed #ccc;
+    border-radius: 8px;
+    background-color: #ffffff;
+}
+.tulangan-visual { 
+    background-color: var(--bg-light-gray); 
+    padding: 10px; 
+    border-radius: 5px; 
+    border: 1px solid #ddd;
+}
