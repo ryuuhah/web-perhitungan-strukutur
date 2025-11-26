@@ -82,13 +82,13 @@ function hitungPembebanan(L, H, W_nonstruktur, Load_live) {
 // --- MODUL 2 & 3: ANALISIS & DESAIN ELEMEN ---
 function hitungDesainBalok(q_u, L, fc_prime, fy) {
     // Analisis: Momen Ultimate (Asumsi balok jepit-jepit)
-    const Mu_negatif = -1 * q_u * (L ** 2) / 12; // Tumpuan
-    const Mu_positif = q_u * (L ** 2) / 24;      // Tengah Bentang
+    const Mu_negatif = -1 * q_u * (L ** 2) / 12; // Momen Tumpuan
+    const Mu_positif = q_u * (L ** 2) / 24;      // Momen Lapangan
     const Mu_design = Math.abs(Mu_negatif);       // Momen desain terbesar
 
     // Desain: Luas Tulangan Perlu (As)
-    const d = 0.45; // m
-    const b = 0.30; // m
+    const d = 0.45; // m (Tinggi Efektif)
+    const b = 0.30; // m (Lebar Balok)
     
     // Mencari rho_min (SNI 2847:2019)
     const rho_min = Math.max(0.25 * Math.sqrt(fc_prime) / fy, 1.4 / fy);
@@ -103,6 +103,7 @@ function hitungDesainBalok(q_u, L, fc_prime, fy) {
     
     let rho_req = 0;
     if (Rn > 0) {
+        // Rumus Rasio Tulangan (rho)
         rho_req = (1 / m) * (1 - Math.sqrt(1 - (2 * m * Rn) / fy));
     }
 
@@ -137,12 +138,18 @@ function gambarDiagramMomen(L, Mu_negatif, Mu_positif) {
     if (momentChart) {
         momentChart.destroy();
     }
+    
+    // Pastikan Mu_negatif adalah negatif
+    const M_neg = Math.min(Mu_negatif, 0);
 
     const dataPoints = [
-        { x: 0, y: Mu_negatif },
+        { x: 0, y: M_neg },
         { x: L/2, y: Mu_positif },
-        { x: L, y: Mu_negatif }
+        { x: L, y: M_neg }
     ];
+
+    // Ambil variabel CSS untuk Chart.js
+    const var_primary_dark = getComputedStyle(document.documentElement).getPropertyValue('--primary-dark');
 
     momentChart = new Chart(ctx, {
         type: 'line',
@@ -150,7 +157,7 @@ function gambarDiagramMomen(L, Mu_negatif, Mu_positif) {
             datasets: [{
                 label: 'Momen Ultimate (kN.m)',
                 data: dataPoints,
-                borderColor: var_primary_dark, // Menggunakan variabel CSS melalui JS (didefinisikan di bawah)
+                borderColor: var_primary_dark,
                 backgroundColor: 'rgba(74, 144, 226, 0.2)',
                 borderWidth: 3,
                 tension: 0.4,
@@ -168,19 +175,19 @@ function gambarDiagramMomen(L, Mu_negatif, Mu_positif) {
                 },
                 y: {
                     title: { display: true, text: 'Momen (kN.m)' },
-                    reverse: true,
-                    min: Mu_negatif * 1.2
+                    reverse: false, // Menampilkan Momen Positif di atas garis
+                    suggestedMin: M_neg * 1.2,
+                    suggestedMax: Mu_positif * 1.2
                 }
             },
             plugins: {
                 legend: { display: false },
-                title: { display: true, text: 'Diagram Momen Lentur (Jepit-Jepit)' }
+                title: { display: true, text: 'Diagram Momen Lentur (Asumsi Jepit-Jepit)' }
             }
         }
     });
 }
-// Ambil variabel CSS untuk Chart.js
-const var_primary_dark = getComputedStyle(document.documentElement).getPropertyValue('--primary-dark');
+
 
 // --- FUNGSI UNTUK MENAMPILKAN HASIL KE HTML ---
 function tampilkanHasil(hasil) {
@@ -190,6 +197,20 @@ function tampilkanHasil(hasil) {
     const Mu_positif = hasil.desain.Mu_positif;
     const As_req = hasil.desain.As_req;
     const FS = hasil.fondasi.FS;
+    
+    // Perhitungan konfigurasi tulangan sederhana
+    const As_req_tumpuan = Math.abs(Mu_negatif) > Mu_positif ? As_req * 1.05 : As_req; // 5% lebih besar di tumpuan
+    const As_req_lapangan = Math.abs(Mu_negatif) > Mu_positif ? As_req : As_req * 1.05; // 5% lebih besar di lapangan
+    
+    // Konversi As_req ke jumlah tulangan (D16 dan D19)
+    const Area_D16 = 2.01; // cm2
+    const Area_D19 = 2.84; // cm2
+
+    const n_D16_tumpuan = Math.ceil(As_req_tumpuan / Area_D16);
+    const n_D19_tumpuan = Math.ceil(As_req_tumpuan / Area_D19);
+    
+    const n_D16_lapangan = Math.ceil(As_req_lapangan / Area_D16);
+    const n_D19_lapangan = Math.ceil(As_req_lapangan / Area_D19);
 
     let htmlOutput = `
         <div class="result-box">
@@ -204,17 +225,24 @@ function tampilkanHasil(hasil) {
         </div>
         
         <div class="result-box">
-            <h5>2 & 3. ANALISIS & DESAIN ELEMEN <span class="sni-ref">(SNI 2847:2019)</span></h5>
+            <h5>2 & 3. ANALISIS & DESAIN ELEMEN (BALOK 300x500mm) <span class="sni-ref">(SNI 2847:2019)</span></h5>
             <div class="row">
                 <div class="col-md-6">
                     <ul class="list-unstyled">
                         <li>Momen Tumpuan ($M_{u,neg}$): <span class="result-data">${Mu_negatif.toFixed(2)} kN.m</span></li>
                         <li>Momen Lapangan ($M_{u,pos}$): <span class="result-data">${Mu_positif.toFixed(2)} kN.m</span></li>
-                        <li>Luas Tulangan Perlu ($A_s$): <span class="result-data text-danger">${As_req.toFixed(2)} cm²</span></li>
+                        <li>Luas Tulangan Perlu Maks: <span class="result-data text-danger">${As_req.toFixed(2)} cm²</span></li>
                     </ul>
                     <div class="tulangan-visual">
-                        <h6>Kebutuhan Tulangan Baja</h6>
-                        <p class="mb-0 small">Ini adalah luas minimum baja yang dibutuhkan pada penampang balok. Harus diverifikasi dengan diameter dan jarak tulangan aktual.</p>
+                        <h6>Rekomendasi Penulangan</h6>
+                        <table class="table table-sm small mt-2">
+                            <thead><tr><th>Area</th><th>As Req (cm²)</th><th>Opsi D16</th><th>Opsi D19</th></tr></thead>
+                            <tbody>
+                                <tr><td>Tumpuan (Atas)</td><td>${As_req_tumpuan.toFixed(2)}</td><td><strong>${n_D16_tumpuan}D16</strong></td><td><strong>${n_D19_tumpuan}D19</strong></td></tr>
+                                <tr><td>Lapangan (Bawah)</td><td>${As_req_lapangan.toFixed(2)}</td><td><strong>${n_D16_lapangan}D16</strong></td><td><strong>${n_D19_lapangan}D19</strong></td></tr>
+                            </tbody>
+                        </table>
+                        <p class="mb-0 small text-muted">Kebutuhan tulangan ini valid untuk dimensi balok 300mm x 500mm yang diasumsikan.</p>
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -226,14 +254,14 @@ function tampilkanHasil(hasil) {
         </div>
 
         <div class="result-box">
-            <h5>4. PERHITUNGAN FONDASI <span class="sni-ref">(SNI 8460:2017)</span></h5>
+            <h5>4. PERENCANAAN DIMENSI CAKAR AYAM (FONDASI ${hasil.fondasi.B_fondasi.toFixed(1)}m x ${hasil.fondasi.L_fondasi.toFixed(1)}m) <span class="sni-ref">(SNI 8460:2017)</span></h5>
             <ul class="list-unstyled">
-                <li>Luas Fondasi: <span class="result-data">${hasil.fondasi.Area_f.toFixed(2)} m²</span></li>
+                <li>Beban Kolom ($P_{u}$): <span class="result-data">${getInputValue('P_ult').toFixed(2)} kN</span></li>
                 <li>Daya Dukung Izin Total ($Q_{all}$): <span class="result-data">${hasil.fondasi.Q_allow.toFixed(2)} kN</span></li>
                 <li>Faktor Aman (FS): <span class="result-data">${FS.toFixed(2)}</span></li>
             </ul>
             <div class="alert ${FS >= 3.0 ? 'alert-success' : 'alert-danger'} small">
-                Status Daya Dukung: **${FS >= 3.0 ? 'AMAN' : 'TIDAK AMAN'}** (FS harus $\ge$ 3.0)
+                Status Daya Dukung: **${FS >= 3.0 ? 'AMAN' : 'TIDAK AMAN'}** (FS harus $\ge$ 3.0). Jika TIDAK AMAN, **perbesar dimensi fondasi**.
             </div>
         </div>
     `;
