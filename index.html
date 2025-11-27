@@ -3,286 +3,71 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ryuu Desain | Arsitektur Rune & Manuskrip Kuno</title>
+    <title>Bandeng Presto Super - Rasa Istimewa</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=IM+Fell+English+SC&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
 
-    <header>
-        <nav>
-            <div class="logo">
-                <img src="image/logo.webp" alt="Ryuu Desain Logo" class="logo-img"> 
-                The Ryuu Realm
-            </div> 
-            
-            <div class="menu-toggle"><i class="fas fa-bars"></i></div> 
-            
-            <ul class="nav-menu">
-                <li><a href="#home">Gerbang Utama</a></li>
-                <li><a href="#portofolio">Arsip Karya</a></li>
-                <li><a href="#layanan">Layanan Mantra</a></li>
-                <li><a href="#tentang">Kisah Kami</a></li>
-                <li><a href="#harga">Persetujuan Emas</a></li>
-                <li><a href="#katalog-satuan">Manuskrip Satuan</a></li>
-                <li><a href="#" class="btn-nav-kontak wa-contact-link"><i class="fab fa-whatsapp"></i> Juru Tulis</a></li>
-            </ul>
-        </nav>
+    <header class="hero">
+        <div class="container">
+            <h1>Bandeng Presto **Mama**</h1>
+            <p>Ikan Bandeng Lunak, Kaya Rasa, Siap Saji!</p>
+            <a href="#produk" class="cta-button">Lihat Produk Kami</a>
+        </div>
     </header>
 
-    <main>
-        <section id="home" class="hero">
-            <h1>Tempat Visi Ruang Anda Ditempa.</h1>
-            <p>Jasa Perancang Sketsa Rune Arsitektural, Visualisasi Alam 3D, dan Manuskrip Pembangunan Terperinci.</p>
-            <a href="#harga" class="btn">Lihat Piagam Persetujuan</a>
-        </section>
-        
-        <section id="harga" class="section-padding reveal-section">
-            <h2>Piagam Persetujuan Emas</h2> 
-            <div class="pricing-table">
-                
-                <div class="price-card">
-                    <h3>Piagam Juru Gambar</h3>
-                    <p class="price-discount-label">Diskon Para Raja</p>
-                    <p class="price-old">Rp 15.000/m²</p>
-                    <p class="price-new">Rp 12.000/m²</p>
-                    <div class="perk-list">
-                         <i class="fas fa-hammer"></i> Sketsa Rune Arsitektural (2D) <br>
-                         <i class="fas fa-mountain" style="color:#C0392B;"></i> Visualisasi Alam 3D <br>
-                         <i class="fas fa-scroll" style="color:#C0392B;"></i> Manuskrip Anggaran (RAB) <br>
-                         <i class="fas fa-crown" style="color:#C0392B;"></i> Interior Aula Raja
-                    </div>
-                    <a href="#" class="btn-outline pesan-paket-btn" data-package-name="Piagam Juru Gambar">Pesan Sekarang</a>
+    <section id="produk" class="section-padding">
+        <div class="container">
+            <h2>Pilihan Produk Terbaik</h2>
+            <div class="product-grid">
+                <div class="product-card">
+                    <img src="placeholder-original.jpg" alt="Bandeng Presto Original">
+                    <h3>Bandeng Presto Original</h3>
+                    <p>Dibuat dengan bumbu tradisional pilihan. Berat **500gr**.</p>
+                    <span class="price">Rp 45.000</span>
+                    <button onclick="addToCart('Original')">Tambahkan ke Keranjang</button>
                 </div>
-
-                 <div class="price-card recommended">
-                    <h3>Piagam Sang Pelihat</h3>
-                    <p class="price-discount-label">Piagam Terpopuler</p>
-                    <p class="price-old">Rp 30.000/m²</p>
-                    <p class="price-new">Rp 24.000/m²</p>
-                    <div class="perk-list">
-                         <i class="fas fa-hammer"></i> Sketsa Rune Arsitektural (2D) <br>
-                         <i class="fas fa-mountain"></i> Visualisasi Alam 3D (Eksterior) <br>
-                         <i class="fas fa-scroll" style="color:#C0392B;"></i> Manuskrip Anggaran (RAB) <br>
-                         <i class="fas fa-crown" style="color:#C0392B;"></i> Interior Aula Raja
-                    </div>
-                    <a href="#" class="btn pesan-paket-btn" data-package-name="Piagam Sang Pelihat">Pilih Piagam Populer</a>
+                <div class="product-card">
+                    <img src="placeholder-pedas.jpg" alt="Bandeng Presto Pedas">
+                    <h3>Bandeng Presto Pedas</h3>
+                    <p>Sentuhan cabai yang menggigit, sempurna untuk pecinta pedas. Berat **500gr**.</p>
+                    <span class="price">Rp 48.000</span>
+                    <button onclick="addToCart('Pedas')">Tambahkan ke Keranjang</button>
                 </div>
-                
-                <div class="price-card">
-                    <h3>Piagam Pembangunan</h3>
-                    <p class="price-discount-label">Diskon Para Raja</p>
-                    <p class="price-old">Rp 45.000/m²</p>
-                    <p class="price-new">Rp 35.000/m²</p>
-                     <div class="perk-list">
-                         <i class="fas fa-hammer"></i> Sketsa Rune Arsitektural (2D) <br>
-                         <i class="fas fa-mountain"></i> Visualisasi Alam 3D (Eksterior) <br>
-                         <i class="fas fa-scroll"></i> <strong>Manuskrip Anggaran (RAB)</strong> <br>
-                         <i class="fas fa-crown" style="color:#C0392B;"></i> Interior Aula Raja
-                    </div>
-                    <a href="#" class="btn-outline pesan-paket-btn" data-package-name="Piagam Pembangunan">Pesan Sekarang</a>
-                </div>
-                
-                <div class="price-card premium">
-                    <h3 class="shimmer-text-gold">Piagam Istana Agung (Premium)</h3>
-                    <p class="price-discount-label">Piagam Kekaisaran</p>
-                    <p class="price-old">Rp 65.000/m²</p>
-                    <p class="price-new">Rp 45.000/m²</p>
-                     <div class="perk-list">
-                         <i class="fas fa-hammer"></i> Sketsa Rune Arsitektural (2D) <br>
-                         <i class="fas fa-mountain"></i> Visualisasi Alam 3D (Eksterior) <br>
-                         <i class="fas fa-scroll"></i> Manuskrip Anggaran (RAB) <br>
-                         <i class="fas fa-crown"></i> <strong>Visualisasi Interior Aula Raja</strong>
-                    </div>
-                    <a href="#" class="btn pesan-paket-btn" data-package-name="Piagam Istana Agung (Premium)">Pesan Piagam Premium</a>
-                </div>
-
-            </div>
-        </section>
-
-        <section id="kalkulator" class="bg-light section-padding reveal-section">
-            <h2>Hitung Dana Pembangunan</h2>
-            <p class="calculator-desc">Gunakan Gulungan Hitungan ini untuk mendapatkan perkiraan awal. Masukkan <strong>Total Area Tanah (m²)</strong> yang akan dibangun. (Contoh: Untuk bangunan 2 lantai dengan luas masing-masing 100m², masukkan 200m²).</p>
-            <div class="calculator-container">
-                <div class="calculator-form">
-                    <div class="form-group">
-                        <label for="luasArea">Luas Area (m²):</label>
-                        <input type="number" id="luasArea" min="1" value="100">
-                    </div>
-                    <div class="form-group">
-                        <label for="paketDesain">Pilih Piagam Desain:</label>
-                        <select id="paketDesain">
-                            <option value="12000" data-name="Piagam Juru Gambar (Sketsa Rune)">Piagam Juru Gambar (Sketsa Rune)</option>
-                            <option value="24000" data-name="Piagam Sang Pelihat (Rune + Visual 3D)">Piagam Sang Pelihat (Rune + Visual 3D)</option>
-                            <option value="35000" data-name="Piagam Pembangunan (Rune + 3D + RAB)">Piagam Pembangunan (Rune + 3D + RAB)</option>
-                            <option value="45000" data-name="Piagam Istana Agung (Rune + 3D + RAB + Interior)">Piagam Istana Agung (Rune + 3D + RAB + Interior)</option>
-                        </select>
-                    </div>
-                    <button id="hitungBiaya" class="btn">Hitung & Pesan pada Juru Tulis</button>
-                </div>
-                <div class="calculator-result">
-                    <p>Estimasi Dana: <span id="hasilBiaya">Rp 0</span></p>
+                <div class="product-card">
+                    <img src="placeholder-tanpaduri.jpg" alt="Bandeng Presto Tanpa Duri">
+                    <h3>Bandeng Presto **Tanpa Duri**</h3>
+                    <p>Praktis dan aman dinikmati seluruh keluarga. Berat **400gr**.</p>
+                    <span class="price">Rp 55.000</span>
+                    <button onclick="addToCart('Tanpa Duri')">Tambahkan ke Keranjang</button>
                 </div>
             </div>
-        </section>
-        
-        <section id="katalog-satuan" class="section-padding reveal-section">
-            <h2>Katalog Manuskrip Satuan (A La Carte)</h2> 
-            <div class="satuan-catalog-container custom-combined-box">
-                <h3 class="satuan-title" style="display: none;">Katalog Manuskrip Satuan</h3> 
-                <p class="satuan-subtitle">Klik layanan mantra yang Anda butuhkan untuk <strong>menambahkan ke peti harta karun</strong>.</p>
-                
-                <div class="satuan-grid">
-                    <div class="satuan-item" data-id="1" data-price="15000" data-name="Sketsa Rune Arsitektural (2D)" data-unit="m²">
-                        <i class="fas fa-hammer satuan-icon"></i>
-                        <h4>Sketsa Rune 2D</h4>
-                        <p class="satuan-price">Rp 15.000/m²</p>
-                    </div>
-                    
-                    <div class="satuan-item" data-id="2" data-price="15000" data-name="Visualisasi Alam 3D (Eksterior)" data-unit="m²">
-                        <i class="fas fa-mountain satuan-icon"></i>
-                        <h4>Visualisasi 3D Eksterior</h4>
-                        <p class="satuan-price">Rp 15.000/m²</p>
-                    </div>
-                    
-                    <div class="satuan-item" data-id="3" data-price="20000" data-name="Manuskrip Anggaran (RAB)" data-unit="m²">
-                        <i class="fas fa-scroll satuan-icon"></i>
-                        <h4>Manuskrip Anggaran (RAB)</h4>
-                        <p class="satuan-price">Rp 20.000/m²</p>
-                    </div>
-                    
-                    <div class="satuan-item" data-id="4" data-price="15000" data-name="Visualisasi Interior Aula Raja" data-unit="m²">
-                        <i class="fas fa-crown satuan-icon"></i>
-                        <h4>Visualisasi 3D Interior</h4>
-                        <p class="satuan-price">Rp 15.000/m²</p>
-                    </div>
-                    
-                    <div class="satuan-item consultation" data-id="5" data-price="0" data-name="Sketsa Desain Furnitur Kustom" data-unit="Konsultasi">
-                        <i class="fas fa-chair satuan-icon"></i>
-                        <h4>Sketsa Furnitur Kustom</h4>
-                        <p class="satuan-price">Konsultasi Dewan Tetua</p>
-                    </div>
-                    
-                    <div class="satuan-item consultation" data-id="6" data-price="0" data-name="Jasa Peta Digital (Desain Web)" data-unit="Konsultasi">
-                        <i class="fas fa-map-marked-alt satuan-icon"></i>
-                        <h4>Jasa Peta Digital</h4>
-                        <p class="satuan-price">Konsultasi Dewan Tetua</p>
-                    </div>
-                </div>
-                
-                <div class="satuan-calculator-box">
-                    <h4>Peti Harta Karun & Total Dana</h4>
-                    
-                    <div id="volumeNote" class="volume-input-note" style="display: none;">
-                        <p class="note-title"><i class="fas fa-exclamation-triangle"></i> PENTING: Masukkan Luas Area Tanah</p>
-                        <p class="note-content">Masukkan <strong>Total Area Tanah (m²)</strong>. (Misalnya: Untuk bangunan 2 lantai dengan luas masing-masing 100m², masukkan <strong>200m²</strong>).</p>
-                        <p class="note-subcontent">Pastikan nominalnya benar untuk mendapatkan perkiraan dana yang akurat.</p>
-                    </div>
-                    <div id="satuanCartList" class="cart-list">
-                        <p class="cart-empty-message">Peti harta karun kosong. Pilih mantra dari katalog di atas.</p>
-                    </div>
-                    
-                    <div class="satuan-result">
-                        <p>Total Estimasi Dana: <span id="hasilSatuanBiaya">Rp 0</span></p>
-                    </div>
-                    
-                    <button id="hitungSatuanBiaya" class="btn btn-satuan-wa" disabled>Pesan Manuskrip pada Juru Tulis</button>
-                </div>
-            </div>
-        </section>
-        
-        <section id="tentang" class="section-padding reveal-section">
-            <h2>Kisah The Ryuu Realm</h2>
-            <div class="about-content">
-                <p class="about-intro">
-                    <strong>The Ryuu Realm</strong> adalah Persekutuan Juru Gambar yang bergerak di bidang jasa <strong>arsitektur dan visualisasi kerajaan</strong>. Kami berdedikasi membantu Anda mendirikan bangunan megah dari tahap sketsa rune awal hingga visualisasi akhir yang realistis. Layanan inti kami mencakup penempaan Sketsa Rune Arsitektural (2D) teknis, Visualisasi Alam 3D Realistis, hingga Manuskrip Anggaran (RAB) yang terperinci, memastikan setiap detail proyek Anda tertangani secara profesional.
-                </p>
-                
-                <h3>Mengapa Memilih Persekutuan Kami?</h3>
-                <ul class="benefit-list">
-                    <li><i class="fas fa-dragon"></i> <strong>Kualitas dan Rune Presisi:</strong> Kami menjamin gambar teknis yang presisi dan visual 3D berkualitas epik.</li>
-                    <li><i class="fas fa-hourglass-half"></i> <strong>Sumpah Ketepatan Waktu:</strong> Komitmen pada jadwal kerja yang disiplin.</li>
-                    <li><i class="fas fa-shield-alt"></i> <strong>Konsultasi Dewan Tetua:</strong> Kami memberikan konsultasi desain yang interaktif hingga Anda puas.</li>
-                    <li><i class="fas fa-coins"></i> <strong>Mantra Dana Efisien:</strong> Membantu Anda merencanakan desain yang hemat biaya tanpa mengorbankan kualitas.</li>
-                </ul>
-            </div>
-        </section>
+        </div>
+    </section>
 
-        <section id="layanan" class="bg-light section-padding reveal-section">
-            <h2>Layanan Mantra Utama</h2>
-            <div class="service-list">
-                <div class="service-item">
-                    <i class="fas fa-hammer service-icon"></i> 
-                    <h3>Sketsa Rune Arsitektural (2D)</h3>
-                    <p>Produksi gambar teknis lengkap (denah, tampak, potongan) siap untuk Piagam Izin Bangunan dan konstruksi.</p>
-                </div>
-                <div class="service-item">
-                    <i class="fas fa-mountain service-icon"></i> 
-                    <h3>Visualisasi Alam 3D Realistis</h3>
-                    <p>Visualisasi istana dan ruang dengan kualitas epik untuk kebutuhan presentasi pada Raja.</p>
-                </div>
-                 <div class="service-item">
-                    <i class="fas fa-scroll service-icon"></i> 
-                    <h3>Manuskrip Anggaran (RAB)</h3>
-                    <p>Perhitungan detail dana material dan jasa konstruksi, memastikan efisiensi anggaran kerajaan Anda.</p>
-                </div>
-                <div class="service-item">
-                    <i class="fas fa-crown service-icon"></i> 
-                    <h3>Visualisasi Interior Aula Raja</h3>
-                    <p>Perancangan dan visualisasi detail tata ruang dalam, termasuk furnitur, pencahayaan, dan material agung.</p>
-                </div>
+    <section id="testimoni" class="section-padding testi-bg">
+        <div class="container">
+            <h2>Kata Pelanggan Kami</h2>
+            <div class="testimoni-slider">
+                <blockquote class="testimonial">
+                    <p>"Bandengnya super empuk! Duri lunak, bumbu meresap sempurna. Pengiriman cepat!"</p>
+                    <footer>- Ibu Siti, Jakarta</footer>
+                </blockquote>
+                <blockquote class="testimonial">
+                    <p>"Varian pedasnya nagih! Cocok banget buat stok lauk di rumah. Wajib coba!"</p>
+                    <footer>- Bapak Budi, Surabaya</footer>
+                </blockquote>
             </div>
-        </section>
-        
-        <section id="portofolio" class="section-padding reveal-section">
-            <h2>Arsip Karya Pilihan</h2>
-            <div class="grid-portofolio">
-                
-                <div class="project-card">
-                    <img src="image/portofolio-minimalis-3d.webp" alt="Desain Rumah Minimalis 3D">
-                    <div class="project-info">
-                        <h3>Benteng Modern X</h3>
-                        <p>Visualisasi 3D Eksterior | Epik Realistis</p>
-                    </div>
-                </div>
-                
-                <div class="project-card">
-                    <img src="image/portofolio-gambar-kerja-2d.webp" alt="Gambar Kerja Denah 2D">
-                    <div class="project-info">
-                        <h3>Denah Aula Tiga Tingkat</h3>
-                        <p>Sketsa Rune 2D Lengkap | Siap Ditempa</p>
-                    </div>
-                </div>
-                 
-                <div class="project-card">
-                    <img src="image/portofolio-interior-kafe.webp" alt="Desain Interior Kafe">
-                    <div class="project-info">
-                        <h3>Interior Aula Pesta Industrial</h3>
-                        <p>Visualisasi Interior | Penempaan Material</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+        </div>
+    </section>
 
-        <section id="kontak" class="section-padding contact-section reveal-section contact-bg">
-            <h2>Mari Mulai Penempaan Kerajaan Anda</h2>
-            <p class="contact-desc">Hubungi Sang Juru Tulis sekarang melalui Manuskrip Digital (WhatsApp) untuk mendapatkan penawaran dan konsultasi gratis.</p>
-            <a id="whatsappContactLink" href="#" class="btn contact-btn wa-contact-link">
-                <i class="fab fa-whatsapp"></i> Pesan pada Juru Tulis
-            </a>
-        </section>
-    </main>
-
-    <footer class="footer-bg">
-        <p>&copy; 2025 The Ryuu Realm. Arsitektur Rune & Visualisasi 3D Epik.</p>
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Bandeng Presto Super. Semua Hak Dilindungi.</p>
+            <p>Hubungi Kami: <a href="https://wa.me/628123456789" target="_blank">WhatsApp (0812...)</a></p>
+        </div>
     </footer>
 
-    <a href="#" id="floating-whatsapp" class="wa-contact-link" aria-label="Hubungi Juru Tulis via WhatsApp">
-        <i class="fab fa-whatsapp"></i>
-    </a>
-
     <script src="script.js"></script>
-
 </body>
 </html>
