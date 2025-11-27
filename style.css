@@ -1,0 +1,602 @@
+/* PALET BARU EPIC FANTASY: Charcoal, Gold, Maroon */
+:root {
+    --color-primary: #2C3333; /* Charcoal Black */
+    --color-accent: #C2B280; /* Emas Kuno / Old Gold */
+    --color-text-light: #FDF9E6; /* Kertas Kuno */
+    --color-text-dark: #2C3333;
+    --color-secondary-dark: #65000B; /* Maroon Gelap / Darah Naga */
+    --color-success: #0C6B4B; /* Hijau Rune */
+    --color-soft-bg: #E8E5D9; /* Latar belakang Kertas */
+    --color-gold: #FFD700; 
+    --color-error: #9A031E; /* Merah Kesalahan */
+}
+
+/* RESET dan FONT */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Merriweather', serif; /* Teks Tubuh */
+    line-height: 1.8; /* Lebih lega untuk gaya kuno */
+    background-color: var(--color-text-light); 
+    color: var(--color-text-dark);
+}
+
+/* Tipografi Epik */
+h1, h2, h3 {
+    font-family: 'IM Fell English SC', serif; /* Judul Besar Epik */
+    font-weight: 700;
+    text-transform: uppercase; 
+    letter-spacing: 2px;
+}
+
+/* UTILITAS dan WHITESPACE */
+.section-padding {
+    padding: 120px 5%; 
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center; 
+}
+
+.bg-light {
+    background-color: #FDF9E6; /* Kertas Kuno Sangat Terang */
+}
+
+h2 {
+    font-size: 3em; 
+    text-align: center;
+    margin-bottom: 70px;
+    border-bottom: 4px solid var(--color-accent); 
+    display: inline-block;
+    padding-bottom: 10px;
+}
+
+/* HEADER & NAVIGASI (DESKTOP) */
+header {
+    background-color: var(--color-primary); 
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5); 
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    transition: padding 0.3s; 
+}
+
+header.scrolled {
+    padding: 5px 0; 
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 5%;
+    max-width: 1200px;
+    margin: 0 auto;
+    transition: padding 0.3s;
+}
+
+header.scrolled nav {
+    padding: 5px 5%;
+}
+
+.logo {
+    font-family: 'IM Fell English SC', serif;
+    font-weight: 700;
+    font-size: 2.5em; 
+    color: var(--color-accent); 
+    display: flex; 
+    align-items: center; 
+    letter-spacing: 3px;
+}
+
+.logo-img {
+    height: 55px; 
+    margin-right: 15px; 
+    transition: height 0.3s; 
+}
+
+header.scrolled .logo-img {
+    height: 45px; 
+}
+
+ul.nav-menu {
+    list-style: none;
+    display: flex;
+}
+
+ul.nav-menu li a {
+    text-decoration: none;
+    color: var(--color-text-light); 
+    padding: 10px 18px;
+    display: block;
+    transition: color 0.3s, background-color 0.3s;
+    font-family: 'Merriweather', serif; 
+}
+
+ul.nav-menu li a:hover, ul.nav-menu li .btn-nav-kontak {
+    color: var(--color-primary); 
+    background-color: var(--color-accent);
+    font-weight: 700;
+    border-radius: 4px;
+}
+
+.menu-toggle {
+    display: none;
+    font-size: 1.8em;
+    color: var(--color-accent);
+    cursor: pointer;
+}
+
+/* BUTTONS */
+.btn {
+    display: inline-block;
+    background-color: var(--color-accent); 
+    color: var(--color-primary); 
+    padding: 15px 35px;
+    text-decoration: none;
+    border-radius: 2px; /* Lebih kotak untuk kesan kuno */
+    font-weight: 700;
+    transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
+    border: 2px solid var(--color-accent);
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.btn:hover {
+    background-color: #D4AF37; /* Gold lebih terang */
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.btn-outline {
+    display: inline-block;
+    background-color: transparent;
+    color: var(--color-accent);
+    padding: 12px 25px;
+    text-decoration: none;
+    border: 2px solid var(--color-accent);
+    border-radius: 2px;
+    font-weight: 700;
+    transition: all 0.3s;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.btn-outline:hover {
+    background-color: var(--color-accent);
+    color: var(--color-primary);
+}
+
+
+/* 2. HOME/HERO SECTION */
+.hero {
+    min-height: 85vh;
+    padding: 150px 5% 50px 5%;
+    background-image: url('image/hero-background.webp'); 
+    background-size: cover;
+    background-position: center;
+    color: white; 
+    position: relative;
+    border-bottom: 5px solid var(--color-accent); 
+}
+
+.hero::before { 
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(44, 51, 51, 0.75); /* Charcoal Overlay */
+    z-index: 1;
+}
+
+.hero h1 {
+    font-size: 4.5em;
+    margin-bottom: 25px;
+    color: var(--color-accent);
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+}
+
+.hero p {
+    font-size: 1.4em;
+    margin-bottom: 50px;
+    font-weight: 300;
+    font-family: 'Merriweather', serif;
+}
+
+/* 3. PORTOFOLIO GRID (Interaktif) */
+.grid-portofolio {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+}
+
+.project-card {
+    background-color: #fff;
+    border-radius: 0; 
+    border: 1px solid #C2B280;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+.project-card img {
+    height: 300px; 
+}
+
+.project-info {
+    background: rgba(101, 0, 11, 0.9); /* Maroon Overlay */
+    color: white;
+}
+
+.project-info h3 {
+    color: var(--color-accent); 
+    font-family: 'Merriweather', serif; 
+    font-weight: 700;
+    font-size: 1.8em;
+    letter-spacing: 1px;
+}
+.project-info p {
+    font-family: 'Merriweather', serif;
+    font-style: italic;
+    font-size: 1em;
+}
+
+
+/* 4. LAYANAN LIST - PENYESUAIAN IKON */
+.service-item {
+    padding: 40px 20px;
+    border: 3px solid var(--color-soft-bg);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.service-item:hover {
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    border-color: var(--color-accent); 
+}
+
+.service-item .service-icon {
+    font-size: 3.5em; 
+    color: var(--color-secondary-dark); /* Ikon Maroon */
+    margin: 0 auto 15px auto; 
+}
+
+.service-item h3 {
+    font-size: 1.4em; 
+    color: var(--color-primary);
+}
+
+
+/* 5. TENTANG KAMI */
+.about-content {
+    background-color: var(--color-soft-bg); 
+    border: 3px solid var(--color-accent); 
+    border-radius: 0;
+}
+
+.about-content h3 {
+    color: var(--color-secondary-dark); 
+    border-bottom: 3px solid var(--color-accent); 
+    font-size: 1.8em;
+}
+
+.benefit-list li {
+    background-color: #ffffff; 
+    border-left: 5px solid var(--color-secondary-dark); 
+    border-radius: 2px;
+    font-family: 'Merriweather', serif;
+}
+
+.benefit-list i {
+    color: var(--color-accent); 
+    margin-right: 15px;
+    font-size: 1.3em;
+}
+
+
+/* 6. KALKULATOR HARGA UTAMA */
+.calculator-desc {
+    font-family: 'Merriweather', serif;
+}
+
+.calculator-container {
+    background-color: var(--color-secondary-dark); /* Maroon Gelap */
+    color: var(--color-text-light); 
+    border-radius: 0;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    border: 2px solid var(--color-accent);
+}
+
+.calculator-form label {
+    color: var(--color-accent); 
+    font-family: 'Merriweather', serif;
+}
+
+.calculator-form input[type="number"],
+.calculator-form select {
+    background-color: #4C0009; /* Maroon lebih gelap */
+    color: var(--color-text-light);
+}
+
+.calculator-form input[type="number"]:focus,
+.calculator-form select:focus {
+    box-shadow: 0 0 0 3px rgba(194, 178, 128, 0.8); 
+}
+
+.calculator-result #hasilBiaya {
+    color: var(--color-accent); 
+    font-family: 'IM Fell English SC', serif;
+    letter-spacing: 2px;
+}
+
+
+/* 7. HARGA (PRICING TABLE) */
+.price-card {
+    border-radius: 0;
+    border: 1px solid #ddd;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.price-card.recommended {
+    border: 3px solid var(--color-secondary-dark); 
+    transform: scale(1.08); 
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+.price-card h3 {
+    font-family: 'Merriweather', serif;
+    font-weight: 700;
+}
+
+.price-discount-label {
+    color: var(--color-secondary-dark);
+}
+
+.price-old {
+    color: var(--color-error); 
+}
+
+.price-new {
+    color: var(--color-accent); 
+    font-family: 'IM Fell English SC', serif;
+}
+
+/* Tema Ikon Fantasi */
+.perk-list i.fas.fa-hammer,
+.perk-list i.fas.fa-mountain,
+.perk-list i.fas.fa-scroll,
+.perk-list i.fas.fa-crown {
+    color: var(--color-success);
+}
+.perk-list i[style*="#C0392B"] { /* Untuk yang dicoret */
+    color: var(--color-error) !important; 
+}
+
+
+/* PREMIUM PACKAGE */
+.price-card.premium {
+    background-color: var(--color-primary); 
+    color: var(--color-text-light); 
+    border: 4px solid var(--color-accent); 
+    animation: none; /* Matikan CSS Pulse/Shimmer asli */
+    box-shadow: 0 0 20px rgba(194, 178, 128, 0.8); /* Static Glow */
+}
+
+.shimmer-text-gold {
+    font-family: 'IM Fell English SC', serif;
+    background-image: linear-gradient(
+        90deg, 
+        var(--color-accent) 0%, 
+        #FFFFFF 50%, 
+        var(--color-accent) 100%
+    );
+    -webkit-text-fill-color: transparent;
+    color: transparent; 
+    animation: text-shimmer 3s infinite linear;
+}
+
+.price-card.premium .price-old, 
+.price-card.premium .price-new, 
+.price-card.premium .price-discount-label {
+    color: var(--color-accent); 
+}
+.price-card.premium .btn {
+    background-color: var(--color-accent); 
+    color: var(--color-primary);
+}
+.price-card.premium .perk-list i {
+    color: var(--color-accent); 
+}
+
+
+/* ======================================================= */
+/* KATALOG SATUAN (A LA CARTE) */
+/* ======================================================= */
+
+.satuan-catalog-container.custom-combined-box {
+    border: 3px solid var(--color-secondary-dark); 
+    border-radius: 0;
+    background-color: var(--color-soft-bg); 
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+.satuan-subtitle {
+    font-family: 'Merriweather', serif;
+}
+
+.satuan-item {
+    border-radius: 0;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.08);
+}
+
+.satuan-item:hover {
+    border-color: var(--color-secondary-dark);
+}
+
+.satuan-item.in-cart {
+    border: 3px solid var(--color-accent);
+    box-shadow: 0 0 12px rgba(194, 178, 128, 0.8);
+}
+
+.satuan-icon {
+    color: var(--color-secondary-dark);
+}
+
+.satuan-item h4 {
+    font-family: 'Merriweather', serif;
+}
+
+.satuan-price {
+    color: var(--color-secondary-dark);
+}
+
+.satuan-item.consultation .satuan-price {
+    color: var(--color-error); 
+}
+
+/* Kotak Keterangan Volume (NEW) */
+.volume-input-note {
+    background-color: #fcf8e3; 
+    border: 2px solid var(--color-accent); 
+}
+
+.volume-input-note .note-title {
+    color: var(--color-secondary-dark);
+}
+
+.volume-input-note .note-title i {
+    color: var(--color-accent); 
+}
+
+.volume-input-note .note-content strong {
+    color: var(--color-error); 
+}
+
+/* Cart Styles */
+.cart-list {
+    border: 1px solid var(--color-accent);
+}
+
+.cart-item-name {
+    color: var(--color-secondary-dark);
+}
+
+.cart-item-remove-btn {
+    color: var(--color-error);
+}
+
+.cart-total-price {
+    color: var(--color-secondary-dark);
+    font-family: 'IM Fell English SC', serif;
+}
+
+
+.satuan-result {
+    font-family: 'Merriweather', serif;
+}
+
+#hasilSatuanBiaya {
+    color: var(--color-accent);
+    font-family: 'IM Fell English SC', serif;
+}
+
+/* ======================================================= */
+/* ANIMASI SCROLL UNTUK EFEK TERBUKA (REVEAL) */
+/* ======================================================= */
+
+.reveal-section {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 1s ease-out, transform 1s ease-out;
+    position: relative;
+    /* Tambahkan efek border/bayangan untuk kesan "muncul" dari latar belakang */
+    box-shadow: 0 0 0 rgba(0,0,0,0);
+}
+
+.reveal-section.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+    /* Tambahkan sedikit bayangan saat muncul */
+    box-shadow: 0 10px 40px rgba(0,0,0,0.2); 
+}
+
+
+/* 8. KONTAK & FOOTER */
+.contact-bg {
+    background-color: var(--color-secondary-dark); 
+    color: var(--color-text-light);
+}
+
+.contact-bg h2 {
+    color: var(--color-text-light);
+}
+
+.contact-btn {
+    border-color: var(--color-accent); 
+    background-color: var(--color-accent);
+    color: var(--color-primary);
+}
+
+.footer-bg {
+    background-color: var(--color-primary); 
+    font-family: 'Merriweather', serif;
+}
+
+/* 9. Floating WhatsApp Button */
+#floating-whatsapp {
+    background-color: #25D366; 
+}
+
+
+/* ======================================================= */
+/* MEDIA QUERIES (MOBILE) */
+/* ======================================================= */
+
+@media (max-width: 768px) {
+    
+    .hero h1 {
+        font-size: 3em; 
+    }
+    h2 {
+        font-size: 2em; 
+    }
+    
+    .price-card.recommended {
+        transform: none; 
+    }
+    
+    .reveal-section.is-visible {
+        box-shadow: none; /* Hilangkan bayangan di mobile */
+    }
+    
+    /* Font di mobile */
+    .logo {
+        font-size: 2em;
+    }
+    .logo-img {
+        height: 40px;
+    }
+    
+    .satuan-item h4 {
+        font-size: 1em;
+    }
+    
+    .cart-total-price {
+        font-size: 0.9em;
+    }
+    
+    .perk-list {
+        font-size: 0.9em;
+    }
+    
+    .shimmer-text-gold {
+        background-image: none;
+        -webkit-text-fill-color: var(--color-accent);
+        color: var(--color-accent);
+        animation: none;
+    }
+}
