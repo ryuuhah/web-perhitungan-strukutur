@@ -3,50 +3,70 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Checkout - Bandeng Presto Original</title>
+    <title>Bandeng Presto Super - Rasa Istimewa</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <div class="container checkout-page">
-        <a href="index.html" class="back-link">&larr; Kembali ke Daftar Produk</a>
-        <h2 class="form-title">Pesan Bandeng Presto Original</h2>
-        
-        <form action="process_order.php" method="POST" class="checkout-form-box">
-            
-            <div class="order-summary">
-                <h3>Ringkasan Pesanan</h3>
-                <p>Produk: **Bandeng Presto Original (500gr)**</p>
-                <p>Harga Satuan: **Rp 45.000**</p>
-            </div>
-            
-            <input type="hidden" name="product_name" value="Bandeng Presto Original">
-            <input type="hidden" name="price" value="45000">
+    <header class="hero">
+        <div class="container">
+            <h1>Bandeng Presto Mama</h1>
+            <p>Ikan Bandeng Lunak, Kaya Rasa, Siap Saji!</p>
+            <a href="#produk" class="cta-button">Lihat Produk Kami</a>
+        </div>
+    </header>
 
-            <div class="form-group">
-                <label for="quantity">Jumlah (pcs):</label>
-                <input type="number" id="quantity" name="quantity" value="1" min="1" required>
+    <section id="produk" class="section-padding">
+        <div class="container">
+            <h2>Pilihan Produk Terbaik</h2>
+            <div class="product-grid">
+                <div class="product-card">
+                    <img src="placeholder-original.jpg" alt="Bandeng Presto Original">
+                    <h3>Bandeng Presto Original</h3>
+                    <p>Dibuat dengan bumbu tradisional pilihan. Berat 500gr.</p>
+                    <span class="price">Rp 45.000</span>
+                    <a href="checkout_original.html" class="buy-button">Beli Sekarang</a>
+                </div>
+                <div class="product-card">
+                    <img src="placeholder-pedas.jpg" alt="Bandeng Presto Pedas">
+                    <h3>Bandeng Presto Pedas</h3>
+                    <p>Sentuhan cabai yang menggigit, sempurna untuk pecinta pedas. Berat 500gr.</p>
+                    <span class="price">Rp 48.000</span>
+                    <a href="checkout_pedas.html" class="buy-button">Beli Sekarang</a>
+                </div>
+                <div class="product-card">
+                    <img src="placeholder-tanpaduri.jpg" alt="Bandeng Presto Tanpa Duri">
+                    <h3>Bandeng Presto Tanpa Duri</h3>
+                    <p>Praktis dan aman dinikmati seluruh keluarga. Berat 400gr.</p>
+                    <span class="price">Rp 55.000</span>
+                    <a href="checkout_tanpaduri.html" class="buy-button">Beli Sekarang</a>
+                </div>
             </div>
+        </div>
+    </section>
 
-            <div class="form-group">
-                <label for="name">Nama Lengkap:</label>
-                <input type="text" id="name" name="customer_name" placeholder="Masukkan nama Anda" required>
+    <section id="testimoni" class="section-padding testi-bg">
+        <div class="container">
+            <h2>Kata Pelanggan Kami</h2>
+            <div class="testimoni-slider">
+                <blockquote class="testimonial">
+                    <p>"Bandengnya super empuk! Duri lunak, bumbu meresap sempurna. Pengiriman cepat!"</p>
+                    <footer>- Ibu Siti, Jakarta</footer>
+                </blockquote>
+                <blockquote class="testimonial">
+                    <p>"Varian pedasnya nagih! Cocok banget buat stok lauk di rumah. Wajib coba!"</p>
+                    <footer>- Bapak Budi, Surabaya</footer>
+                </blockquote>
             </div>
+        </div>
+    </section>
 
-            <div class="form-group">
-                <label for="phone">Nomor Telepon (WA):</label>
-                <input type="tel" id="phone" name="phone_number" placeholder="Contoh: 08123456789" required>
-            </div>
-
-            <div class="form-group">
-                <label for="address">Alamat Pengiriman Lengkap:</label>
-                <textarea id="address" name="delivery_address" rows="4" placeholder="Jalan, Nomor Rumah, RT/RW, Kelurahan, Kota" required></textarea>
-            </div>
-
-            <button type="submit" class="cta-button full-width">Proses & Kirim Pesanan</button>
-            <p class="note">Setelah menekan tombol, tim kami akan menghubungi Anda via WA untuk konfirmasi total termasuk ongkos kirim.</p>
-        </form>
-    </div>
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Bandeng Presto Super. Semua Hak Dilindungi.</p>
+            <p>Hubungi Kami: <a href="https://wa.me/628123456789" target="_blank">WhatsApp (0812...)</a></p>
+        </div>
+    </footer>
 
 </body>
 </html>
