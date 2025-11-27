@@ -1,7 +1,7 @@
 /* PALET BARU EPIC FANTASY: Charcoal, Gold, Maroon */
 :root {
-    --color-primary: #2C3333; /* Charcoal Black */
-    --color-accent: #C2B280; /* Emas Kuno / Old Gold */
+    --color-primary: #2C3333; /* Charcoal Black (simulasi kulit/kayu gelap) */
+    --color-accent: #C2B280; /* Emas Kuno / Old Gold (bingkai/border) */
     --color-text-light: #FDF9E6; /* Kertas Kuno */
     --color-text-dark: #2C3333;
     --color-secondary-dark: #65000B; /* Maroon Gelap / Darah Naga */
@@ -19,63 +19,79 @@
 }
 
 body {
-    font-family: 'Merriweather', serif; /* Teks Tubuh */
-    line-height: 1.8; /* Lebih lega untuk gaya kuno */
-    background-color: var(--color-text-light); 
+    font-family: 'Merriweather', serif; 
+    line-height: 1.8; 
+    
+    /* === TEKSTUR KERTAS KUNO (PARCHMENT) === */
+    background-color: #f7f2e8; 
+    background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIGhlaWdodD0iMTAwIj4KICA8ZmlsdGVyIGlkPSJub2lzZSI+CiAgICA8ZmV0dXJidWxlbmNlIHR5cGU9InR1cmJ1bGVuY2UiIGJhc2VmcmVxdWVuY3k9Ii42IiBzdGl0Y2hlZHRpbGVzPSJzdGl0Y2h0aWxlIiBudW0b2N0YXZlcz0iMyIgc2VlZD0iNCIgLz4KICA8L2ZpbHRlcj4KICA8cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJyZ2JhKDIwNSwyMDUsMjA1LDAuMDcpIiAvPgogIDxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbHRlci11cmw9InVybCgjbmlzZSkiIG9wYWNpdHk9IjAuMjMiIC8+Cjwvc3ZnPg==");
+    background-repeat: repeat;
+    /* ======================================= */
+    
     color: var(--color-text-dark);
 }
 
 /* Tipografi Epik */
 h1, h2, h3 {
-    font-family: 'IM Fell English SC', serif; /* Judul Besar Epik */
+    font-family: 'IM Fell English SC', serif; 
     font-weight: 700;
     text-transform: uppercase; 
     letter-spacing: 2px;
 }
 
-/* UTILITAS dan WHITESPACE */
+/* UTILITAS, BINGKAI & TEKSTUR UTAMA */
 .section-padding {
-    padding: 120px 5%; 
+    padding: 0; 
     max-width: 1200px;
-    margin: 0 auto;
-    text-align: center; 
+    margin: 40px auto; 
+    position: relative;
+    background-color: #fcfcf5; 
+}
+
+/* KONTEN UTAMA - BINGKAI KERAPIAHAN */
+.section-padding:not(#home):not(#kalkulator) {
+    padding: 80px 5%; 
+    border: 4px solid var(--color-accent); 
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15); 
+    margin-bottom: 50px;
+    transition: box-shadow 0.5s;
+    text-align: center;
+}
+
+/* Bingkai Dalam/Dekoratif (Garis putus-putus) */
+.section-padding:not(#home):not(#kalkulator)::before {
+    content: '';
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    right: 15px;
+    bottom: 15px;
+    border: 2px dashed var(--color-secondary-dark); 
+    pointer-events: none;
 }
 
 .bg-light {
-    background-color: #FDF9E6; /* Kertas Kuno Sangat Terang */
+    background-color: #FDF9E6; 
 }
 
 h2 {
     font-size: 3em; 
     text-align: center;
     margin-bottom: 70px;
-    border-bottom: 4px solid var(--color-accent); 
+    border-bottom: 4px solid var(--color-secondary-dark); 
     display: inline-block;
     padding-bottom: 10px;
 }
 
-/* HEADER & NAVIGASI (DESKTOP) */
+/* HEADER & NAVIGASI (Simulasi Tekstur Kulit/Kayu Gelap) */
 header {
     background-color: var(--color-primary); 
-    box-shadow: 0 5px 15px rgba(0,0,0,0.5); 
+    box-shadow: 0 5px 15px rgba(0,0,0,0.8); 
     position: sticky;
     top: 0;
     z-index: 1000;
     transition: padding 0.3s; 
-}
-
-header.scrolled {
-    padding: 5px 0; 
-}
-
-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 5%;
-    max-width: 1200px;
-    margin: 0 auto;
-    transition: padding 0.3s;
+    border-bottom: 5px solid var(--color-accent); 
 }
 
 header.scrolled nav {
@@ -137,7 +153,7 @@ ul.nav-menu li a:hover, ul.nav-menu li .btn-nav-kontak {
     color: var(--color-primary); 
     padding: 15px 35px;
     text-decoration: none;
-    border-radius: 2px; /* Lebih kotak untuk kesan kuno */
+    border-radius: 5px; 
     font-weight: 700;
     transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
     border: 2px solid var(--color-accent);
@@ -147,8 +163,8 @@ ul.nav-menu li a:hover, ul.nav-menu li .btn-nav-kontak {
 }
 
 .btn:hover {
-    background-color: #D4AF37; /* Gold lebih terang */
-    transform: translateY(-3px);
+    background-color: #D4AF37; 
+    transform: translateY(-2px);
     box-shadow: 0 5px 15px rgba(0,0,0,0.3);
 }
 
@@ -159,7 +175,7 @@ ul.nav-menu li a:hover, ul.nav-menu li .btn-nav-kontak {
     padding: 12px 25px;
     text-decoration: none;
     border: 2px solid var(--color-accent);
-    border-radius: 2px;
+    border-radius: 5px;
     font-weight: 700;
     transition: all 0.3s;
     text-transform: uppercase;
@@ -191,8 +207,13 @@ ul.nav-menu li a:hover, ul.nav-menu li .btn-nav-kontak {
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(44, 51, 51, 0.75); /* Charcoal Overlay */
+    background: rgba(44, 51, 51, 0.75); 
     z-index: 1;
+}
+
+.hero > * { /* Konten Hero berada di atas overlay */
+    position: relative;
+    z-index: 2;
 }
 
 .hero h1 {
@@ -209,28 +230,39 @@ ul.nav-menu li a:hover, ul.nav-menu li .btn-nav-kontak {
     font-family: 'Merriweather', serif;
 }
 
-/* 3. PORTOFOLIO GRID (Interaktif) */
+/* 3. PORTOFOLIO GRID (Dipercantik) */
 .grid-portofolio {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     gap: 30px;
+    margin-top: 50px;
 }
 
 .project-card {
     background-color: #fff;
-    border-radius: 0; 
-    border: 1px solid #C2B280;
+    border-radius: 5px; 
+    border: 3px solid var(--color-secondary-dark); 
     overflow: hidden;
     box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.25);
 }
 
 .project-card img {
+    width: 100%;
     height: 300px; 
+    object-fit: cover;
+    display: block;
 }
 
 .project-info {
-    background: rgba(101, 0, 11, 0.9); /* Maroon Overlay */
+    background: var(--color-secondary-dark); 
     color: white;
+    padding: 20px 10px;
 }
 
 .project-info h3 {
@@ -244,24 +276,35 @@ ul.nav-menu li a:hover, ul.nav-menu li .btn-nav-kontak {
     font-family: 'Merriweather', serif;
     font-style: italic;
     font-size: 1em;
+    margin-top: 5px;
 }
 
 
-/* 4. LAYANAN LIST - PENYESUAIAN IKON */
+/* 4. LAYANAN LIST - Dipertegas */
+.service-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    margin-top: 50px;
+}
+
 .service-item {
     padding: 40px 20px;
     border: 3px solid var(--color-soft-bg);
+    border-radius: 5px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    transition: all 0.3s;
 }
 
 .service-item:hover {
     box-shadow: 0 10px 30px rgba(0,0,0,0.15);
     border-color: var(--color-accent); 
+    background-color: #fbf5e6; 
 }
 
 .service-item .service-icon {
     font-size: 3.5em; 
-    color: var(--color-secondary-dark); /* Ikon Maroon */
+    color: var(--color-secondary-dark); 
     margin: 0 auto 15px auto; 
 }
 
@@ -271,22 +314,34 @@ ul.nav-menu li a:hover, ul.nav-menu li .btn-nav-kontak {
 }
 
 
-/* 5. TENTANG KAMI */
+/* 5. TENTANG KAMI - Dipertegas */
 .about-content {
     background-color: var(--color-soft-bg); 
-    border: 3px solid var(--color-accent); 
-    border-radius: 0;
+    padding: 30px;
+    text-align: left;
 }
-
+.about-intro {
+    font-size: 1.1em;
+    margin-bottom: 30px;
+}
 .about-content h3 {
     color: var(--color-secondary-dark); 
-    border-bottom: 3px solid var(--color-accent); 
-    font-size: 1.8em;
+    border-bottom: 2px solid var(--color-accent); 
+    font-size: 1.6em;
+    padding-bottom: 5px;
+    margin-top: 30px;
+    margin-bottom: 20px;
 }
 
+.benefit-list {
+    list-style: none;
+    padding: 0;
+}
 .benefit-list li {
     background-color: #ffffff; 
     border-left: 5px solid var(--color-secondary-dark); 
+    padding: 10px;
+    margin-bottom: 10px;
     border-radius: 2px;
     font-family: 'Merriweather', serif;
 }
@@ -298,81 +353,143 @@ ul.nav-menu li a:hover, ul.nav-menu li .btn-nav-kontak {
 }
 
 
-/* 6. KALKULATOR HARGA UTAMA */
+/* 6. KALKULATOR HARGA UTAMA - Dibuat Rapi */
+#kalkulator {
+    padding: 80px 5%;
+    margin-top: 0; 
+    margin-bottom: 40px; 
+    background-color: #f7f2e8; /* Sesuaikan dengan background body */
+}
 .calculator-desc {
     font-family: 'Merriweather', serif;
+    margin-bottom: 40px;
 }
 
 .calculator-container {
-    background-color: var(--color-secondary-dark); /* Maroon Gelap */
+    background-color: var(--color-secondary-dark); 
     color: var(--color-text-light); 
-    border-radius: 0;
+    border-radius: 5px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.5);
     border: 2px solid var(--color-accent);
+    padding: 40px;
+    max-width: 700px;
+    margin: 0 auto;
 }
 
+/* Form Input Style */
+.form-group {
+    text-align: left;
+    margin-bottom: 25px;
+}
 .calculator-form label {
     color: var(--color-accent); 
     font-family: 'Merriweather', serif;
+    display: block;
+    margin-bottom: 8px;
+    font-size: 1.1em;
 }
 
 .calculator-form input[type="number"],
 .calculator-form select {
-    background-color: #4C0009; /* Maroon lebih gelap */
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--color-accent);
+    border-radius: 3px;
+    background-color: #4C0009; 
     color: var(--color-text-light);
+    font-size: 1em;
 }
 
 .calculator-form input[type="number"]:focus,
 .calculator-form select:focus {
+    outline: none;
     box-shadow: 0 0 0 3px rgba(194, 178, 128, 0.8); 
 }
 
+.calculator-result {
+    margin-top: 30px;
+    font-size: 1.5em;
+    font-weight: 700;
+}
 .calculator-result #hasilBiaya {
     color: var(--color-accent); 
     font-family: 'IM Fell English SC', serif;
     letter-spacing: 2px;
+    font-size: 1.8em;
 }
 
-
 /* 7. HARGA (PRICING TABLE) */
+.pricing-table {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin-top: 50px;
+}
+
 .price-card {
-    border-radius: 0;
-    border: 1px solid #ddd;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    background-color: var(--color-soft-bg);
+    padding: 30px;
+    border-radius: 5px;
+    border: 2px solid var(--color-secondary-dark);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+.price-card:hover:not(.recommended):not(.premium) {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
 }
 
 .price-card.recommended {
-    border: 3px solid var(--color-secondary-dark); 
-    transform: scale(1.08); 
-    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    border: 4px solid var(--color-accent); 
+    transform: scale(1.05); 
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    background-color: #fcfcf5;
 }
 
 .price-card h3 {
     font-family: 'Merriweather', serif;
     font-weight: 700;
+    font-size: 2em;
+    margin-bottom: 15px;
+    color: var(--color-secondary-dark);
 }
 
 .price-discount-label {
     color: var(--color-secondary-dark);
+    font-weight: 700;
+    display: block;
+    margin-bottom: 5px;
 }
 
 .price-old {
     color: var(--color-error); 
+    text-decoration: line-through;
+    font-size: 1.1em;
 }
 
 .price-new {
     color: var(--color-accent); 
     font-family: 'IM Fell English SC', serif;
+    font-size: 3em;
+    margin-top: 10px;
+    margin-bottom: 25px;
 }
 
-/* Tema Ikon Fantasi */
-.perk-list i.fas.fa-hammer,
-.perk-list i.fas.fa-mountain,
-.perk-list i.fas.fa-scroll,
-.perk-list i.fas.fa-crown {
-    color: var(--color-success);
+.perk-list {
+    list-style: none;
+    text-align: left;
+    margin-bottom: 30px;
+    padding-left: 20px;
 }
-.perk-list i[style*="#C0392B"] { /* Untuk yang dicoret */
+.perk-list br { display: none; } /* Hilangkan break asli */
+
+.perk-list i {
+    color: var(--color-success);
+    margin-right: 10px;
+    width: 20px;
+    text-align: center;
+}
+.perk-list i[style*="#C0392B"] { 
     color: var(--color-error) !important; 
 }
 
@@ -382,8 +499,17 @@ ul.nav-menu li a:hover, ul.nav-menu li .btn-nav-kontak {
     background-color: var(--color-primary); 
     color: var(--color-text-light); 
     border: 4px solid var(--color-accent); 
-    animation: none; /* Matikan CSS Pulse/Shimmer asli */
-    box-shadow: 0 0 20px rgba(194, 178, 128, 0.8); /* Static Glow */
+    box-shadow: 0 0 20px rgba(194, 178, 128, 0.8); 
+    transform: scale(1.05);
+}
+
+.price-card.premium h3 {
+    color: var(--color-accent);
+}
+
+@keyframes text-shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
 }
 
 .shimmer-text-gold {
@@ -394,6 +520,8 @@ ul.nav-menu li a:hover, ul.nav-menu li .btn-nav-kontak {
         #FFFFFF 50%, 
         var(--color-accent) 100%
     );
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     color: transparent; 
     animation: text-shimmer 3s infinite linear;
@@ -414,114 +542,188 @@ ul.nav-menu li a:hover, ul.nav-menu li .btn-nav-kontak {
 
 
 /* ======================================================= */
-/* KATALOG SATUAN (A LA CARTE) */
+/* KATALOG SATUAN (A LA CARTE) - Dirapikan */
 /* ======================================================= */
 
 .satuan-catalog-container.custom-combined-box {
     border: 3px solid var(--color-secondary-dark); 
-    border-radius: 0;
+    border-radius: 5px;
     background-color: var(--color-soft-bg); 
     box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    padding: 40px;
+    margin-top: 50px;
 }
 
-.satuan-subtitle {
-    font-family: 'Merriweather', serif;
+.satuan-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 20px;
+    margin-top: 30px;
+    margin-bottom: 40px;
 }
 
 .satuan-item {
-    border-radius: 0;
+    background-color: #ffffff;
+    padding: 20px 15px;
+    border-radius: 3px;
+    border: 1px solid #ddd;
     box-shadow: 0 3px 8px rgba(0,0,0,0.08);
+    cursor: pointer;
+    transition: all 0.2s;
 }
 
 .satuan-item:hover {
     border-color: var(--color-secondary-dark);
+    transform: translateY(-3px);
 }
 
 .satuan-item.in-cart {
     border: 3px solid var(--color-accent);
     box-shadow: 0 0 12px rgba(194, 178, 128, 0.8);
+    background-color: #fff9e6; /* Highlight lembut */
 }
 
 .satuan-icon {
+    font-size: 2.5em;
     color: var(--color-secondary-dark);
+    margin-bottom: 10px;
 }
 
 .satuan-item h4 {
     font-family: 'Merriweather', serif;
+    font-size: 1.1em;
+    margin-bottom: 5px;
 }
 
 .satuan-price {
     color: var(--color-secondary-dark);
+    font-weight: 700;
 }
 
 .satuan-item.consultation .satuan-price {
     color: var(--color-error); 
 }
 
-/* Kotak Keterangan Volume (NEW) */
+/* Cart Styles */
+.satuan-calculator-box {
+    background-color: #fefefe;
+    padding: 20px;
+    border: 1px solid var(--color-accent);
+    border-radius: 3px;
+    margin-top: 30px;
+    text-align: left;
+}
+.satuan-calculator-box h4 {
+    text-align: center;
+    color: var(--color-primary);
+    margin-bottom: 20px;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 10px;
+}
+
 .volume-input-note {
     background-color: #fcf8e3; 
     border: 2px solid var(--color-accent); 
+    padding: 15px;
+    border-radius: 3px;
+    margin-bottom: 20px;
 }
 
-.volume-input-note .note-title {
-    color: var(--color-secondary-dark);
-}
-
-.volume-input-note .note-title i {
-    color: var(--color-accent); 
-}
-
-.volume-input-note .note-content strong {
-    color: var(--color-error); 
-}
-
-/* Cart Styles */
 .cart-list {
-    border: 1px solid var(--color-accent);
+    border: 1px solid #ddd;
+    min-height: 100px;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 3px;
+    background-color: #ffffff;
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px dashed #eee;
+}
+
+.cart-item:last-child {
+    border-bottom: none;
 }
 
 .cart-item-name {
+    font-weight: 600;
     color: var(--color-secondary-dark);
 }
 
-.cart-item-remove-btn {
-    color: var(--color-error);
+.cart-item-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.cart-item-input {
+    width: 60px;
+    padding: 5px;
+    text-align: center;
+    border: 1px solid #ccc;
 }
 
 .cart-total-price {
+    font-weight: 700;
     color: var(--color-secondary-dark);
     font-family: 'IM Fell English SC', serif;
+    font-size: 0.9em;
 }
 
+.cart-item-remove-btn {
+    background: none;
+    border: none;
+    color: var(--color-error);
+    cursor: pointer;
+    font-size: 1em;
+    margin-left: 5px;
+}
 
 .satuan-result {
-    font-family: 'Merriweather', serif;
+    text-align: center;
+    font-size: 1.2em;
+    margin-bottom: 20px;
+    border-top: 1px solid #ccc;
+    padding-top: 15px;
 }
 
 #hasilSatuanBiaya {
     color: var(--color-accent);
     font-family: 'IM Fell English SC', serif;
+    font-size: 1.5em;
+}
+
+.btn-satuan-wa {
+    width: 100%;
+    margin-top: 10px;
 }
 
 /* ======================================================= */
-/* ANIMASI SCROLL UNTUK EFEK TERBUKA (REVEAL) */
+/* ANIMASI SCROLL UNTUK EFEK GULUNGAN TERBUKA (SCROLL-OPEN) */
 /* ======================================================= */
 
 .reveal-section {
     opacity: 0;
-    transform: translateY(50px);
-    transition: opacity 1s ease-out, transform 1s ease-out;
+    transform: scaleY(0); 
+    transform-origin: top; 
+    transition: opacity 0.8s ease-out, transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94); 
     position: relative;
-    /* Tambahkan efek border/bayangan untuk kesan "muncul" dari latar belakang */
-    box-shadow: 0 0 0 rgba(0,0,0,0);
+    box-shadow: none !important; /* Nonaktifkan shadow default agar terlihat rapi */
 }
 
 .reveal-section.is-visible {
     opacity: 1;
-    transform: translateY(0);
-    /* Tambahkan sedikit bayangan saat muncul */
-    box-shadow: 0 10px 40px rgba(0,0,0,0.2); 
+    transform: scaleY(1);
+}
+
+.reveal-section.is-visible:not(#home):not(#kalkulator) {
+    /* Tambahkan shadow rapi setelah animasi gulungan selesai */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
 }
 
 
@@ -529,26 +731,58 @@ ul.nav-menu li a:hover, ul.nav-menu li .btn-nav-kontak {
 .contact-bg {
     background-color: var(--color-secondary-dark); 
     color: var(--color-text-light);
+    border-radius: 5px;
+    margin-top: 0;
+    margin-bottom: 40px;
+    padding: 60px 5%;
+    border: 4px solid var(--color-accent);
+}
+
+.contact-bg::before { /* Hilangkan bingkai dashed di bagian kontak */
+    display: none;
 }
 
 .contact-bg h2 {
     color: var(--color-text-light);
+    border-bottom: 4px solid var(--color-accent);
 }
 
 .contact-btn {
     border-color: var(--color-accent); 
     background-color: var(--color-accent);
     color: var(--color-primary);
+    margin-top: 20px;
 }
 
 .footer-bg {
     background-color: var(--color-primary); 
+    border-top: 5px solid var(--color-accent);
+    padding: 25px 5%;
+    color: var(--color-text-light);
+    text-align: center;
     font-family: 'Merriweather', serif;
 }
 
 /* 9. Floating WhatsApp Button */
 #floating-whatsapp {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
     background-color: #25D366; 
+    color: white;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 60px;
+    font-size: 2em;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    z-index: 100;
+    transition: transform 0.3s;
+}
+
+#floating-whatsapp:hover {
+    transform: scale(1.1);
 }
 
 
@@ -558,41 +792,96 @@ ul.nav-menu li a:hover, ul.nav-menu li .btn-nav-kontak {
 
 @media (max-width: 768px) {
     
+    .section-padding:not(#home):not(#kalkulator) {
+        padding: 40px 5%; 
+        margin: 20px auto;
+    }
+    
+    .section-padding:not(#home):not(#kalkulator)::before {
+        top: 10px;
+        left: 10px;
+        right: 10px;
+        bottom: 10px;
+    }
+
+    h2 {
+        font-size: 2em; 
+        margin-bottom: 30px;
+    }
     .hero h1 {
         font-size: 3em; 
     }
-    h2 {
-        font-size: 2em; 
-    }
     
-    .price-card.recommended {
+    .price-card.recommended, .price-card.premium {
         transform: none; 
     }
     
-    .reveal-section.is-visible {
-        box-shadow: none; /* Hilangkan bayangan di mobile */
+    /* Navigasi Mobile */
+    .nav-menu {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background-color: var(--color-primary);
+        border-top: 2px solid var(--color-accent);
+        box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+    }
+
+    .nav-menu.active {
+        display: flex;
+    }
+
+    .nav-menu li a {
+        padding: 12px 20px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .nav-menu li a:hover {
+        background-color: var(--color-secondary-dark);
     }
     
-    /* Font di mobile */
+    .menu-toggle {
+        display: block;
+    }
+    
     .logo {
-        font-size: 2em;
+        font-size: 1.8em;
     }
     .logo-img {
         height: 40px;
     }
     
+    /* Kalkulator */
+    #kalkulator {
+        padding: 40px 5%;
+    }
+    .calculator-result #hasilBiaya {
+        font-size: 1.5em;
+    }
+    
+    /* Katalog Satuan */
+    .satuan-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
     .satuan-item h4 {
-        font-size: 1em;
-    }
-    
-    .cart-total-price {
         font-size: 0.9em;
     }
-    
-    .perk-list {
-        font-size: 0.9em;
+    .cart-item-remove-btn {
+        margin-left: 0;
     }
     
+    /* Floating WA Button */
+    #floating-whatsapp {
+        width: 50px;
+        height: 50px;
+        font-size: 1.8em;
+        line-height: 50px;
+        bottom: 15px;
+        right: 15px;
+    }
+    
+    /* Nonaktifkan shimmer di mobile untuk performa */
     .shimmer-text-gold {
         background-image: none;
         -webkit-text-fill-color: var(--color-accent);
