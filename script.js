@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const header = document.querySelector('header');
     
     // Asumsi nomor WhatsApp (NOMOR BARU)
-    const waNumber = '6285117788355'; // DIUBAH KE NOMOR BARU
+    const waNumber = '6285117788355'; 
     
     // State untuk Keranjang Satuan
     let satuanCart = []; 
@@ -41,7 +41,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function generateWaLink(message) {
-        // Hapus "62" jika ada, tambahkan awalan "62"
         let cleanNumber = waNumber.replace(/^0|[^0-9]/g, ''); 
         if (!cleanNumber.startsWith('62')) {
             cleanNumber = '62' + cleanNumber;
@@ -66,15 +65,13 @@ document.addEventListener('DOMContentLoaded', function() {
         const itemCard = document.querySelector(`.satuan-item[data-id="${id}"]`);
 
         if (existingIndex !== -1) {
-            // Item sudah ada, HAPUS (TOGGLE OFF)
             satuanCart.splice(existingIndex, 1);
             if (itemCard) itemCard.classList.remove('in-cart');
         } else {
-            // Item belum ada, TAMBAH (TOGGLE ON)
             if (!product) return;
             satuanCart.push({
                 productId: id,
-                volume: (product.price > 0 ? 100 : 1), // Default volume 100m2 untuk non-konsultasi
+                volume: (product.price > 0 ? 100 : 1), 
                 product: product 
             });
             if (itemCard) itemCard.classList.add('in-cart');
@@ -83,12 +80,10 @@ document.addEventListener('DOMContentLoaded', function() {
         renderCart();
     }
     
-    // Fungsi ini tetap ada untuk tombol hapus di dalam keranjang (trash icon)
     function removeFromCart(productId) {
         const id = parseInt(productId);
         satuanCart = satuanCart.filter(item => item.productId !== id);
         
-        // Hapus highlight pada kartu di katalog
         const itemCard = document.querySelector(`.satuan-item[data-id="${id}"]`);
         if (itemCard) itemCard.classList.remove('in-cart');
 
@@ -100,14 +95,14 @@ document.addEventListener('DOMContentLoaded', function() {
         const item = satuanCart.find(i => i.productId === id);
         
         if (item && item.product.price > 0) {
-            item.volume = Math.max(1, newVolume); // Pastikan volume minimal 1
+            item.volume = Math.max(1, newVolume); 
             updateCartTotal();
         }
     }
     
     function updateCartTotal() {
         let totalCost = 0;
-        let hasPayableItem = false; // Untuk menentukan apakah ada item berharga > 0
+        let hasPayableItem = false; 
 
         satuanCart.forEach(item => {
             if (item.product.price > 0 && item.volume > 0) {
@@ -118,26 +113,25 @@ document.addEventListener('DOMContentLoaded', function() {
 
         totalBiayaSpan.textContent = formatRupiah(totalCost);
         
-        // Atur status tombol WA dan tampilan catatan volume
         if (satuanCart.length === 0) {
-             waButton.textContent = "Pilih Manuskrip ke Peti Harta Karun"; // Ganti Text
+             waButton.textContent = "Pilih Manuskrip ke Peti Harta Karun"; 
              waButton.disabled = true;
-             if (volumeNoteElement) volumeNoteElement.style.display = 'none'; // Sembunyikan catatan
+             if (volumeNoteElement) volumeNoteElement.style.display = 'none'; 
         } else {
              waButton.disabled = false;
              if (hasPayableItem) {
-                waButton.textContent = `Pesan ${satuanCart.length} Manuskrip via Juru Tulis`; // Ganti Text
-                if (volumeNoteElement) volumeNoteElement.style.display = 'block'; // Tampilkan catatan
+                waButton.textContent = `Pesan ${satuanCart.length} Manuskrip via Juru Tulis`; 
+                if (volumeNoteElement) volumeNoteElement.style.display = 'block'; 
              } else {
-                waButton.textContent = `Ajukan Konsultasi ${satuanCart.length} Mantra via Juru Tulis`; // Ganti Text
-                if (volumeNoteElement) volumeNoteElement.style.display = 'none'; // Sembunyikan catatan
+                waButton.textContent = `Ajukan Konsultasi ${satuanCart.length} Mantra via Juru Tulis`; 
+                if (volumeNoteElement) volumeNoteElement.style.display = 'none'; 
              }
         }
     }
 
     function renderCart() {
         if (satuanCart.length === 0) {
-            cartListElement.innerHTML = '<p class="cart-empty-message">Peti harta karun kosong. Pilih mantra dari katalog di atas.</p>'; // Ganti Text
+            cartListElement.innerHTML = '<p class="cart-empty-message">Peti harta karun kosong. Pilih mantra dari katalog di atas.</p>'; 
         } else {
             let html = '';
             satuanCart.forEach(item => {
@@ -151,7 +145,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         </div>
                         <div class="cart-item-controls">
                             ${isConsultation ? 
-                                `<span class="cart-total-price">DEWAN TETUA</span>` : // Ganti Text
+                                `<span class="cart-total-price">DEWAN TETUA</span>` : 
                                 `<input type="number" min="1" value="${item.volume}" class="cart-item-input" data-id="${item.productId}" placeholder="m²">
                                 <span class="cart-total-price">${item.product.unit}</span>`
                             }
@@ -171,7 +165,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // Event Listeners Keranjang Satuan
     // =====================================================
 
-    // 1. Klik Kartu Satuan (Toggle Cart Item)
     satuanItems.forEach(item => {
         item.addEventListener('click', function() {
             const productId = this.getAttribute('data-id');
@@ -179,20 +172,17 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // 2. Event Delegation untuk input volume dan tombol remove
     cartListElement.addEventListener('change', function(e) {
         if (e.target.classList.contains('cart-item-input')) {
             const id = e.target.getAttribute('data-id');
-            // Pastikan input adalah bilangan bulat dan positif
             const newVolume = Math.round(parseFloat(e.target.value)); 
             
             if (!isNaN(newVolume) && newVolume >= 1) {
                 updateCartVolume(id, newVolume);
             } else {
-                // Reset nilai input ke nilai terakhir yang valid atau default
                 const currentItem = satuanCart.find(i => i.productId == id);
                 e.target.value = currentItem ? currentItem.volume : 1; 
-                alert("Mohon masukkan nominal area tanah (m²) yang benar (angka positif)."); // Ganti Text
+                alert("Mohon masukkan nominal area tanah (m²) yang benar (angka positif)."); 
             }
         }
     });
@@ -205,11 +195,10 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     
-    // 3. Tombol Pesan via WA
     waButton.addEventListener('click', function() {
         if (satuanCart.length === 0) return;
 
-        let message = "Halo The Ryuu Realm, saya ingin memesan Manuskrip Satuan berikut:\n\n"; // Ganti Text
+        let message = "Halo The Ryuu Realm, saya ingin memesan Manuskrip Satuan berikut:\n\n"; 
         let hasPayable = false;
         let totalCost = 0;
 
@@ -219,7 +208,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const subtotal = product.price * item.volume;
             
             if (isConsultation) {
-                message += `${index + 1}. ${product.name} (Perlu Konsultasi Dana)\n`; // Ganti Text
+                message += `${index + 1}. ${product.name} (Perlu Konsultasi Dana)\n`; 
             } else {
                 message += `${index + 1}. ${product.name} - ${item.volume} ${product.unit} (Est. ${formatRupiah(subtotal)})\n`;
                 totalCost += subtotal;
@@ -228,9 +217,9 @@ document.addEventListener('DOMContentLoaded', function() {
         });
 
         if (hasPayable) {
-            message += `\nTotal Estimasi Dana: ${formatRupiah(totalCost)}`; // Ganti Text
+            message += `\nTotal Estimasi Dana: ${formatRupiah(totalCost)}`; 
         } else {
-             message = "Halo The Ryuu Realm, saya ingin mengajukan Konsultasi Dewan Tetua untuk layanan:\n" + satuanCart.map(item => `- ${item.product.name}`).join('\n'); // Ganti Text
+             message = "Halo The Ryuu Realm, saya ingin mengajukan Konsultasi Dewan Tetua untuk layanan:\n" + satuanCart.map(item => `- ${item.product.name}`).join('\n'); 
         }
 
         window.open(generateWaLink(message), '_blank');
@@ -263,9 +252,6 @@ document.addEventListener('DOMContentLoaded', function() {
         } else {
             header.classList.remove('scrolled');
         }
-        
-        // Panggil Intersection Observer pada scroll
-        observer.observe();
     });
 
     // 4. Logika Kalkulator Harga Paket (Existing)
@@ -279,7 +265,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const hargaPerM2 = parseFloat(paketDesainSelect.value);
         
         if (isNaN(luasArea) || luasArea <= 0) {
-            hasilBiayaSpan.textContent = "Masukkan Luas Area Tanah yang valid."; // Ganti Text
+            hasilBiayaSpan.textContent = "Masukkan Luas Area Tanah yang valid."; 
             return;
         }
 
@@ -301,12 +287,11 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         const totalBiaya = luasArea * hargaPerM2;
-        const message = `Halo The Ryuu Realm, saya ingin memesan:\n- Piagam: ${paketNama}\n- Luas Area: ${luasArea} m²\n- Estimasi Dana: ${formatRupiah(totalBiaya)}`; // Ganti Text
+        const message = `Halo The Ryuu Realm, saya ingin memesan:\n- Piagam: ${paketNama}\n- Luas Area: ${luasArea} m²\n- Estimasi Dana: ${formatRupiah(totalBiaya)}`; 
         
         window.open(generateWaLink(message), '_blank');
     });
 
-    // Tambahkan event listener untuk menghitung ulang saat ada perubahan
     luasAreaInput.addEventListener('input', hitungEstimasiPaket);
     paketDesainSelect.addEventListener('change', hitungEstimasiPaket);
     
@@ -315,20 +300,20 @@ document.addEventListener('DOMContentLoaded', function() {
     waContactLinks.forEach(link => {
         link.addEventListener('click', function(e) {
             e.preventDefault();
-            const defaultMessage = "Halo The Ryuu Realm, saya tertarik dengan Layanan Rune Anda dan ingin berkonsultasi dengan Dewan Tetua."; // Ganti Text
+            const defaultMessage = "Halo The Ryuu Realm, saya tertarik dengan Layanan Rune Anda dan ingin berkonsultasi dengan Dewan Tetua."; 
             window.open(generateWaLink(defaultMessage), '_blank');
         });
     });
     
     // =====================================================
-    // 6. Scroll Reveal Animation (EFEK TERBUKA)
+    // 6. Scroll Reveal Animation (EFEK GULUNGAN TERBUKA)
     // =====================================================
     const revealSections = document.querySelectorAll('.reveal-section');
 
     const observerOptions = {
       root: null,
       rootMargin: '0px',
-      threshold: 0.15 // Sedikit lebih tinggi dari 0.1
+      threshold: 0.15 
     };
 
     const observer = new IntersectionObserver((entries, observer) => {
